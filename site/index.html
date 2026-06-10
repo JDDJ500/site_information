@@ -1,1033 +1,749 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="light">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>RelayTech Academy - Engenharia e Aplicação de Relés</title>
+    <title>RelayMaster - Engenharia de Relés</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script id=\"tailwind-config\">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#002046",
-                        "primary-container": "#1b365d",
-                        "on-primary-container": "#87a0cd",
-                        "secondary": "#5b5f61",
-                        "secondary-container": "#e0e3e5",
-                        "on-secondary-container": "#616567",
-                        "surface": "#f8f9fa",
-                        "surface-dim": "#d9dadb",
-                        "surface-bright": "#f8f9fa",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-low": "#f3f4f5",
-                        "surface-container": "#edeeef",
-                        "surface-container-high": "#e7e8e9",
-                        "surface-container-highest": "#e1e3e4",
-                        "on-surface": '#191c1d',
-                        "on-surface-variant": "#44474e",
-                        "outline": "#74777f",
-                        "outline-variant": "#c4c6cf",
-                        "error-container": "#ffdad6"
-                    }
-                }
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#191c1e",
+                    "primary-container": "#131b2e",
+                    "on-tertiary-container": "#818486",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#565e74",
+                    "primary-fixed-dim": "#bec6e0",
+                    "secondary": "#515f74",
+                    "on-surface-variant": "#45464d",
+                    "inverse-surface": "#303032",
+                    "surface-container": "#f0edef",
+                    "surface-container-low": "#f6f3f5",
+                    "surface-variant": "#e4e2e4",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#d5e3fc",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-tertiary-fixed": "#191c1e",
+                    "secondary-fixed": "#d5e3fc",
+                    "surface-bright": "#fcf8fa",
+                    "outline": "#76777d",
+                    "inverse-primary": "#bec6e0",
+                    "on-background": "#1b1b1d",
+                    "on-primary-container": "#7c839b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-primary-fixed": "#131b2e",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "inverse-on-surface": "#f3f0f2",
+                    "background": "#fcf8fa",
+                    "primary-fixed": "#dae2fd",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1b1d",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "surface-dim": "#dcd9db",
+                    "primary": "#000000",
+                    "tertiary": "#000000",
+                    "outline-variant": "#c6c6cd",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface": "#fcf8fa",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e4e2e4",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "on-secondary-container": "#57657a",
+                    "surface-container-high": "#eae7e9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "stack-md": "12px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "stack-sm": "4px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg": ["Inter"],
+                    "code-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
             }
-        };
+          },
+        },
+      }
     </script>
     <style>
-        .accordion-item .accordion-content {
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .technical-grid {
+            background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .circuit-grid {
+            background-image: radial-gradient(#CBD5E1 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
         .accordion-item.active .accordion-content {
             max-height: 500px;
-            transition: max-height 0.5s ease-in;
         }
-        .accordion-item .icon-rot {
-            transition: transform 0.3s ease;
-        }
-        .accordion-item.active .icon-rot {
+        .accordion-item.active .chevron {
             transform: rotate(180deg);
+        }
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface antialiased font-sans">
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
 
-    <header class="sticky top-0 z-40 w-full border-b border-outline-variant bg-white/95 backdrop-blur-md transition-all">
-        <div class="max-w-7xl mx-auto flex h-16 items-center justify-between px-6">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-3xl font-bold">bolt</span>
-                <span class="font-bold text-xl tracking-tight text-primary">RelayTech Academy</span>
-            </div>
-            <nav id="nav-links" class="hidden md:flex items-center gap-8 font-medium text-sm text-secondary">
-                <a href="#about" class="hover:text-primary transition-colors">Funcionamento</a>
-                <a href="#history" class="hover:text-primary transition-colors">História</a>
-                <a href="#types" class="hover:text-primary transition-colors">Modelos</a>
-                <a href="#applications" class="hover:text-primary transition-colors">Aplicações</a>
-                <a href="#maintenance" class="hover:text-primary transition-colors">Manutenção</a>
-                <a href="#quiz" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-container transition-all">Lumina Quiz</a>
-            </nav>
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
+    <nav class="max-w-container-max mx-auto px-gutter py-4 flex justify-between items-center">
+        <div class="font-headline-md text-headline-md font-bold text-primary">RelayMaster</div>
+        <div class="hidden md:flex gap-8 items-center" id="nav-links">
+            <a class="nav-link text-primary border-b-2 border-primary pb-1 font-body-md" href="#home">Início</a>
+            <a class="nav-link text-secondary hover:text-primary transition-colors font-body-md" href="#history">História</a>
+            <a class="nav-link text-secondary hover:text-primary transition-colors font-body-md" href="#types">Modelos técnicos</a>
+            <a class="nav-link text-secondary hover:text-primary transition-colors font-body-md" href="#apps">Aplicações Práticas</a>
+            <a class="nav-link text-secondary hover:text-primary transition-colors font-body-md" href="#maintenance">Manutenção Preventiva</a>
+            <a class="nav-link text-secondary hover:text-primary transition-colors font-body-md" href="#quiz-section">Desafio Lumina</a>
         </div>
-    </header>
+        <button onclick="toggleChat()" class="bg-primary-container text-on-primary-container px-6 py-2 rounded font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">smart_toy</span> Assistente IA
+        </button>
+    </nav>
+</header>
 
-    <main class="max-w-7xl mx-auto px-6 py-8 space-y-16">
-
-        <section id="about" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-8">
-            <div class="space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-xs font-semibold text-primary">
-                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Engenharia Fundamental
-                </div>
-                <h1 class="text-4xl font-extrabold tracking-tight text-primary lg:text-5xl">Como Funcionam os Relés?</h1>
-                <p class="text-on-surface-variant text-base leading-relaxed">
-                    Um relé é um interruptor acionado eletricamente. Quando uma corrente de baixa potência percorre a bobina interna, ela gera um campo magnético que atrai uma armadura móvel, alterando fisicamente o estado dos contatos elétricos para manobrar circuitos de alta potência com isolamento galvânico total.
-                </p>
-                <div class="p-4 bg-surface-container-low border-l-4 border-primary rounded-r">
-                    <p class="text-sm font-mono text-primary-container">
-                        <strong>Princípio Físico:</strong> Lei de Faraday e Efeito Joule cooperam para realizar trabalho mecânico a partir de impulsos lógicos.
-                    </p>
-                </div>
+<section class="pt-32 pb-24 technical-grid" id="home">
+    <div class="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-stack-lg">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-md">
+                <span class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span>
+                TECNOLOGIA EM AUTOMAÇÃO INDUSTRIAL
             </div>
-
-            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
-                <div class="flex items-center justify-between mb-4 border-b border-outline-variant pb-4">
-                    <span class="font-mono text-xs uppercase tracking-wider text-secondary">Esquema Dinâmico de Painel</span>
-                    <button onclick="toggleRelaySimulation()" id="btn-trigger" class="flex items-center gap-2 bg-primary text-white font-medium text-xs px-4 py-2 rounded-md hover:bg-primary-container transition-all shadow-sm">
-                        <span class="material-symbols-outlined text-sm">power_settings_new</span> Energizar Bobina
-                    </button>
-                </div>
-
-                <!-- Status bar -->
-                <div class="flex items-center gap-3 mb-4 px-1">
-                    <div class="flex items-center gap-2">
-                        <div id="sim-led" class="w-3 h-3 rounded-full bg-secondary transition-all duration-300"></div>
-                        <span id="sim-status-label" class="font-mono text-xs text-secondary">BOBINA DESLIGADA</span>
-                    </div>
-                    <div class="ml-auto flex items-center gap-4 font-mono text-xs">
-                        <span>NF: <span id="nf-status" class="font-bold text-green-600">FECHADO</span></span>
-                        <span>NA: <span id="na-status" class="font-bold text-secondary">ABERTO</span></span>
-                    </div>
-                </div>
-
-                <!-- SVG Simulator -->
-                <div class="relative w-full bg-surface-container rounded-lg border border-outline-variant overflow-hidden" style="height: 300px;">
-                    <svg id="relay-svg" width="100%" height="100%" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', monospace">
-                        <defs>
-                            <!-- Bobina gradient -->
-                            <linearGradient id="coil-grad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#1b365d"/>
-                                <stop offset="100%" stop-color="#002046"/>
-                            </linearGradient>
-                            <!-- Núcleo gradient -->
-                            <linearGradient id="core-grad" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stop-color="#44474e"/>
-                                <stop offset="100%" stop-color="#74777f"/>
-                            </linearGradient>
-                            <!-- Armadura gradient -->
-                            <linearGradient id="arm-grad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#191c1d"/>
-                                <stop offset="100%" stop-color="#44474e"/>
-                            </linearGradient>
-                            <!-- Glow filter for energized -->
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="3" result="blur"/>
-                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                            <!-- Flux animation along wire -->
-                            <marker id="arrow-ctrl" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                                <path d="M0,0 L6,3 L0,6 Z" fill="#002046"/>
-                            </marker>
-                            <marker id="arrow-na" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                                <path d="M0,0 L6,3 L0,6 Z" fill="#16a34a"/>
-                            </marker>
-                        </defs>
-
-                        <!-- ══ BACKGROUND GRID ══ -->
-                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#c4c6cf" stroke-width="0.3" opacity="0.5"/>
-                        </pattern>
-                        <rect width="500" height="300" fill="url(#grid)"/>
-
-                        <!-- ══ CIRCUITO DE CONTROLE (esquerda) ══ -->
-                        <!-- Label seção -->
-                        <text x="105" y="18" text-anchor="middle" font-size="8" fill="#74777f" font-weight="600" letter-spacing="1">CIRCUITO DE CONTROLE</text>
-
-                        <!-- Fonte de controle (bateria) -->
-                        <g id="ctrl-source">
-                            <rect x="14" y="100" width="26" height="46" rx="3" fill="#e0e3e5" stroke="#74777f" stroke-width="1.5"/>
-                            <line x1="21" y1="110" x2="33" y2="110" stroke="#191c1d" stroke-width="2"/>
-                            <line x1="24" y1="117" x2="30" y2="117" stroke="#74777f" stroke-width="1.5"/>
-                            <line x1="21" y1="124" x2="33" y2="124" stroke="#191c1d" stroke-width="2"/>
-                            <line x1="24" y1="131" x2="30" y2="131" stroke="#74777f" stroke-width="1.5"/>
-                            <text x="27" y="154" text-anchor="middle" font-size="7" fill="#5b5f61">VCC</text>
-                        </g>
-
-                        <!-- Fio de controle: cima -->
-                        <polyline id="wire-ctrl-top" points="27,100 27,50 165,50 165,78" fill="none" stroke="#002046" stroke-width="2" stroke-dasharray="none"/>
-                        <!-- Fio de controle: baixo -->
-                        <polyline id="wire-ctrl-bot" points="27,146 27,250 165,250 165,218" fill="none" stroke="#002046" stroke-width="2"/>
-
-                        <!-- Partículas animadas no fio de controle -->
-                        <circle id="flux-ctrl-1" r="3.5" fill="#002046" opacity="0">
-                            <animateMotion id="anim-ctrl-1" dur="1.8s" repeatCount="indefinite" begin="indefinite"
-                                path="M27,100 L27,50 L165,50 L165,78"/>
-                        </circle>
-                        <circle id="flux-ctrl-2" r="3.5" fill="#002046" opacity="0">
-                            <animateMotion id="anim-ctrl-2" dur="1.8s" repeatCount="indefinite" begin="indefinite" keyTimes="0;1" calcMode="linear"
-                                path="M27,146 L27,250 L165,250 L165,218"/>
-                        </circle>
-
-                        <!-- ══ BOBINA ══ -->
-                        <!-- Corpo da bobina -->
-                        <rect x="140" y="78" width="50" height="140" rx="5" fill="url(#coil-grad)" stroke="#1b365d" stroke-width="2"/>
-                        <!-- Espiras -->
-                        <g id="coil-windings" stroke="#87a0cd" stroke-width="1.5" fill="none">
-                            <ellipse cx="165" cy="92"  rx="22" ry="7"/>
-                            <ellipse cx="165" cy="104" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="116" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="128" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="140" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="152" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="164" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="176" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="188" rx="22" ry="7"/>
-                            <ellipse cx="165" cy="200" rx="22" ry="7"/>
-                        </g>
-                        <!-- Label bobina -->
-                        <text x="165" y="232" text-anchor="middle" font-size="9" fill="white" font-weight="600" letter-spacing="1">BOBINA</text>
-                        <!-- Terminais A1 / A2 -->
-                        <circle cx="165" cy="78"  r="5" fill="#87a0cd" stroke="white" stroke-width="1"/>
-                        <circle cx="165" cy="218" r="5" fill="#87a0cd" stroke="white" stroke-width="1"/>
-                        <text x="173" y="76"  font-size="7" fill="#87a0cd">A1</text>
-                        <text x="173" y="222" font-size="7" fill="#87a0cd">A2</text>
-
-                        <!-- ══ NÚCLEO (barra de ferro em U) ══ -->
-                        <rect id="core-top"    x="207" y="88"  width="28" height="120" rx="3" fill="url(#core-grad)" stroke="#44474e" stroke-width="1.5"/>
-                        <rect id="core-bottom" x="207" y="198" width="75" height="16"  rx="3" fill="url(#core-grad)" stroke="#44474e" stroke-width="1.5"/>
-                        <!-- Polo magnético (face de atração) -->
-                        <rect id="pole-face" x="207" y="88" width="28" height="10" rx="2" fill="#74777f"/>
-                        <text x="221" y="78" text-anchor="middle" font-size="7" fill="#74777f">NÚCLEO</text>
-
-                        <!-- Campo magnético (arcos — visíveis só ao energizar) -->
-                        <g id="mag-field" opacity="0" style="transition: opacity 0.4s">
-                            <path d="M235,93 Q258,93 258,148 Q258,203 235,203" fill="none" stroke="#002046" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
-                            <path d="M235,93 Q270,93 270,148 Q270,203 235,203" fill="none" stroke="#002046" stroke-width="1"   stroke-dasharray="4 3" opacity="0.3"/>
-                        </g>
-
-                        <!-- ══ ARMADURA MÓVEL (pivotada em cima) ══ -->
-                        <!-- pivot point: x=282, y=98 -->
-                        <g id="armature-group" style="transform-origin: 282px 98px; transform: rotate(0deg); transition: transform 0.35s cubic-bezier(.4,1.6,.6,1)">
-                            <rect x="272" y="88" width="18" height="130" rx="4" fill="url(#arm-grad)" stroke="#191c1d" stroke-width="1.5"/>
-                            <!-- Mola (linhas zigue-zague no topo) -->
-                            <path d="M275,88 L275,72 M289,88 L289,72" stroke="#74777f" stroke-width="1.5"/>
-                            <path d="M275,72 L282,65 L275,58 L282,51 L275,44" stroke="#74777f" stroke-width="1.5" fill="none"/>
-                            <path d="M289,72 L282,65 L289,58 L282,51 L289,44" stroke="#74777f" stroke-width="1.5" fill="none"/>
-                            <text x="282" y="40" text-anchor="middle" font-size="7" fill="#74777f">MOLA</text>
-                            <!-- Contato móvel (ponta da armadura) -->
-                            <rect id="contact-moving" x="268" y="206" width="26" height="12" rx="3" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"/>
-                        </g>
-
-                        <!-- ══ CONTATOS FIXOS ══ -->
-                        <!-- Contato NF (normalmente fechado — em cima, armadura toca em repouso) -->
-                        <g id="contact-nf-group">
-                            <rect id="contact-nf" x="310" y="204" width="30" height="12" rx="3" fill="#e0e3e5" stroke="#74777f" stroke-width="1.5"/>
-                            <text x="350" y="213" font-size="9" fill="#74777f" font-weight="600">COM</text>
-                            <!-- Fio saída COM -->
-                            <line x1="340" y1="210" x2="380" y2="210" stroke="#74777f" stroke-width="1.5"/>
-                        </g>
-
-                        <!-- Contato NA (normalmente aberto — em baixo) -->
-                        <g id="contact-na-group">
-                            <rect id="contact-na" x="310" y="236" width="30" height="12" rx="3" fill="#e0e3e5" stroke="#74777f" stroke-width="1.5"/>
-                            <text x="350" y="245" font-size="9" fill="#16a34a" font-weight="600">NA</text>
-                            <line x1="340" y1="242" x2="380" y2="242" stroke="#74777f" stroke-width="1.5"/>
-                        </g>
-
-                        <!-- Contato NF fixo (acima) — já desconectado ao energizar -->
-                        <g id="contact-nf-fixed-group">
-                            <rect id="contact-nf-fixed" x="310" y="172" width="30" height="12" rx="3" fill="#e0e3e5" stroke="#74777f" stroke-width="1.5"/>
-                            <text x="350" y="181" font-size="9" fill="#dc2626" font-weight="600">NF</text>
-                            <line x1="340" y1="178" x2="380" y2="178" stroke="#74777f" stroke-width="1.5"/>
-                        </g>
-
-                        <!-- ══ CARGAS DE SAÍDA ══ -->
-                        <!-- Carga NF (lâmpada — acesa em repouso) -->
-                        <g id="load-nf">
-                            <circle id="lamp-nf" cx="430" cy="178" r="14" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
-                            <line x1="422" y1="170" x2="438" y2="186" stroke="#ca8a04" stroke-width="2"/>
-                            <line x1="438" y1="170" x2="422" y2="186" stroke="#ca8a04" stroke-width="2"/>
-                            <text x="430" y="202" text-anchor="middle" font-size="7" fill="#5b5f61">CARGA NF</text>
-                            <line x1="380" y1="178" x2="416" y2="178" stroke="#74777f" stroke-width="1.5"/>
-                            <line x1="444" y1="178" x2="470" y2="178" stroke="#74777f" stroke-width="1.5"/>
-                            <line x1="470" y1="178" x2="470" y2="260" stroke="#74777f" stroke-width="1.5"/>
-                        </g>
-
-                        <!-- Carga NA (lâmpada — apagada em repouso) -->
-                        <g id="load-na">
-                            <circle id="lamp-na" cx="430" cy="242" r="14" fill="#f1f5f9" stroke="#74777f" stroke-width="2"/>
-                            <line x1="422" y1="234" x2="438" y2="250" stroke="#9ca3af" stroke-width="2"/>
-                            <line x1="438" y1="234" x2="422" y2="250" stroke="#9ca3af" stroke-width="2"/>
-                            <text x="430" y="266" text-anchor="middle" font-size="7" fill="#5b5f61">CARGA NA</text>
-                            <line x1="380" y1="242" x2="416" y2="242" stroke="#74777f" stroke-width="1.5"/>
-                            <line x1="444" y1="242" x2="470" y2="242" stroke="#74777f" stroke-width="1.5"/>
-                        </g>
-
-                        <!-- Partículas animadas no circuito NA (visíveis só ao energizar) -->
-                        <circle id="flux-na" r="3.5" fill="#16a34a" opacity="0">
-                            <animateMotion id="anim-na" dur="1.2s" repeatCount="indefinite" begin="indefinite"
-                                path="M325,210 L380,210 L380,242 L444,242 L470,242"/>
-                        </circle>
-
-                        <!-- Retorno GND compartilhado -->
-                        <line x1="470" y1="260" x2="470" y2="285" stroke="#74777f" stroke-width="1.5"/>
-                        <line x1="380" y1="210" x2="380" y2="285" stroke="#74777f" stroke-width="1.5"/>
-                        <line x1="380" y1="285" x2="470" y2="285" stroke="#74777f" stroke-width="1.5"/>
-                        <text x="425" y="297" text-anchor="middle" font-size="7" fill="#74777f">GND CARGA</text>
-
-                        <!-- Fio COM → contato móvel -->
-                        <line x1="325" y1="210" x2="325" y2="215" stroke="#74777f" stroke-width="1.5"/>
-
-                        <!-- ══ LABELS ZONA ══ -->
-                        <text x="282" y="18" text-anchor="middle" font-size="8" fill="#74777f" font-weight="600" letter-spacing="1">ELETROÍMÃ</text>
-                        <text x="400" y="18" text-anchor="middle" font-size="8" fill="#74777f" font-weight="600" letter-spacing="1">CIRCUITO DE CARGA</text>
-
-                        <!-- Divisória zona -->
-                        <line x1="300" y1="25" x2="300" y2="285" stroke="#c4c6cf" stroke-width="1" stroke-dasharray="4 4"/>
-                    </svg>
-                </div>
-
-                <!-- Legenda -->
-                <div class="mt-3 flex flex-wrap gap-4 text-xs font-mono text-secondary px-1">
-                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span> Contato móvel (armadura)</span>
-                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span> Contato NF — abre ao energizar</span>
-                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-600 inline-block"></span> Contato NA — fecha ao energizar</span>
-                </div>
+            <h1 class="font-display-lg text-display-lg text-primary max-w-xl">
+                O Universo dos Relés: Engenharia, Lógica e Controle
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                Descubra os fundamentos essenciais dos componentes que regem a lógica da automação moderna. Do acionamento mecânico tradicional à alta velocidade do estado sólido.
+            </p>
+            <div class="flex gap-4">
+                <a class="bg-primary text-on-primary px-8 py-4 font-label-md flex items-center gap-2 hover:opacity-90 transition-opacity" href="#types">
+                    Conhecer os Modelos
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a href="#apps" class="border border-outline px-8 py-4 font-label-md hover:bg-surface-container-low transition-colors inline-block text-center">
+                    Ver Aplicações Reais
+                </a>
             </div>
-        </section>
-
-        <hr class="border-outline-variant"/>
-
-        <section id="history" class="space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-3xl font-bold tracking-tight text-primary">História e Evolução Crítica</h2>
-                <p class="text-on-surface-variant text-sm">Dos telégrafos eletromecânicos do século XIX aos primórdios da computação lógica digital binária.</p>
+        </div>
+        <div class="relative">
+            <div class="bg-white p-4 rounded-lg border border-outline-variant shadow-sm rotate-1 relative z-10">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Painel de Controle de Engenharia Elétrica" class="w-full h-64 object-cover rounded border border-outline-variant shadow-inner" />
             </div>
+            <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-fixed opacity-20 -z-10"></div>
+            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary-fixed opacity-10 -z-10"></div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-surface-container-lowest" id="history">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="mb-16">
+            <h2 class="font-headline-lg text-headline-lg text-primary">História da Revolução Eletromagnética</h2>
+            <div class="w-16 h-1 bg-primary mt-2"></div>
+        </div>
+        <div class="relative space-y-16">
+            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant"></div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">Antiguidade — Origens do Eletromagnetismo</div>
-                    <h3 class="text-lg font-bold text-primary">Magnetita e Bússola</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Os gregos antigos já observavam as propriedades magnéticas da magnetita. Séculos depois, os chineses inventaram a bússola — primeiro instrumento a explorar o campo magnético terrestre, base conceitual de tudo que viria a seguir.
-                    </p>
+            <div class="flex flex-col md:flex-row items-center gap-8 relative">
+                <div class="flex-1 md:text-right">
+                    <span class="font-label-md text-primary bg-primary-fixed px-3 py-1 rounded">1835</span>
+                    <h3 class="font-headline-md text-headline-md mt-4">Joseph Henry e o Primeiro Relé</h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Invenção do relé eletromagnético primitivo. O cientista descobriu que um sinal elétrico fraco de longa distância poderia magnetizar uma bobina para abrir ou fechar um circuito secundário local de alta potência.</p>
                 </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">1820 — Corrente Cria Campo</div>
-                    <h3 class="text-lg font-bold text-primary">Oersted</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Hans Christian Oersted demonstrou experimentalmente que uma corrente elétrica percorrendo um fio condutor é capaz de gerar um campo magnético ao redor dele — princípio fundamental que tornaria o relé possível.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">1831 — Indução Magnética</div>
-                    <h3 class="text-lg font-bold text-primary">Faraday e o Transformador</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Michael Faraday descobriu a indução eletromagnética e construiu o primeiro transformador da história. Sua lei estabeleceu que variações de campo magnético induzem corrente elétrica — fundamento da eletrônica moderna.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">1835 — O Ponto de Partida</div>
-                    <h3 class="text-lg font-bold text-primary">Joseph Henry</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Descobriu que um sinal elétrico de controle fraco transmitido por longas distâncias poderia ser usado para magnetizar uma bobina local. Esse magnetismo movia uma armadura para abrir ou fechar um circuito independente de potência muito mais robusto.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">1838 — Primeira Patente</div>
-                    <h3 class="text-lg font-bold text-primary">Edward Davy</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Edward Davy registrou a primeira patente oficial de um relé, concebido para amplificar sinais telegráficos ao longo de grandes distâncias — permitindo que a mensagem fosse retransmitida sem perda de qualidade.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">1939–1940 — Computação Remota</div>
-                    <h3 class="text-lg font-bold text-primary">George Stibitz</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Stibitz construiu o primeiro computador digital elétrico do mundo utilizando relés. Em 1940, realizou a primeira demonstração de computação remota da história, operando a máquina à distância via linha telegráfica.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3 md:col-span-2 lg:col-span-1">
-                    <div class="text-xs font-mono font-bold text-primary">Anos 40 — Computação Militar</div>
-                    <h3 class="text-lg font-bold text-primary">Computadores de Guerra</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Surgem computadores militares pesando até 10 toneladas, equipados com cerca de 9 mil relés. Esses projetos introduziram conceitos pioneiros como <em>processamento paralelo</em> e <em>sistemas operacionais</em> — conceitos que moldariam a computação para sempre.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-3">
-                    <div class="text-xs font-mono font-bold text-primary">1941 — Lógica Binária Estruturada</div>
-                    <h3 class="text-lg font-bold text-primary">Konrad Zuse e o Z3</h3>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Antes da popularização industrial do silício e dos transistores, os relés elétricos operavam como portas lógicas binárias fundamentais. O pioneiro computador Z3 usava milhares de relés acoplados para executar cálculos complexos em ponto flutuante.
-                    </p>
+                <div class="z-10 w-4 h-4 bg-primary rounded-full ring-4 ring-background"></div>
+                <div class="flex-1">
+                    <img src="https://www.mundodaeletrica.com.br/y/10980/bobina-eletrica-600.webp" alt="Bobina de Cobre Tradicional Eletromagnética" class="w-full h-48 object-cover rounded-xl border border-outline-variant" />
                 </div>
             </div>
-        </section>
 
-        <hr class="border-outline-variant"/>
-
-        <section id="types" class="space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-3xl font-bold tracking-tight text-primary">Classificação e Modelos Técnicos</h2>
-                <p class="text-on-surface-variant text-sm">Escolha o componente correto avaliando as limitações de desgaste físico e regimes de operação.</p>
+            <div class="flex flex-col md:flex-row-reverse items-center gap-8 relative">
+                <div class="flex-1 md:text-left">
+                    <span class="font-label-md text-primary bg-primary-fixed px-3 py-1 rounded">Década de 1940</span>
+                    <h3 class="font-headline-md text-headline-md mt-4">A Era dos Computadores a Relé</h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Antes dos transistores de silício, os relés serviram como as primeiras portas lógicas binárias da computação mundial, operando em máquinas pioneiras como o computador Z3 desenvolvido por Konrad Zuse.</p>
+                </div>
+                <div class="z-10 w-4 h-4 bg-primary rounded-full ring-4 ring-background"></div>
+                <div class="flex-1">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Circuitos Lógicos Antigos Computação" class="w-full h-48 object-cover rounded-xl border border-outline-variant" />
+                </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Tipos de Contatos -->
-            <div class="space-y-4">
-                <h3 class="text-xl font-bold text-primary text-center">Tipos de Contatos</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-green-600 bg-green-50 p-2 rounded-lg text-lg">add_circle</span>
-                            <h4 class="font-bold text-primary text-base">NA — Normalmente Aberto</h4>
-                        </div>
-                        <p class="text-sm text-on-surface-variant leading-relaxed">
-                            O circuito controlado permanece <strong>aberto</strong> (desligado) enquanto a bobina está sem energia. Ao energizar a bobina, o campo magnético fecha o contato, ligando a carga. É o tipo mais comum em automação.
-                        </p>
-                        <span class="inline-block text-xs font-mono bg-green-50 text-green-800 border border-green-200 rounded px-2 py-1">Fecha ao energizar</span>
+<section class="py-24 bg-background" id="types">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="text-center mb-16">
+            <h2 class="font-headline-lg text-headline-lg text-primary">Classificação Técnica de Dispositivos</h2>
+            <p class="font-body-md text-on-surface-variant">Conheça as principais tecnologias de comutação utilizadas no mercado de engenharia atual</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+            <div class="md:col-span-8 group bg-white border border-outline-variant p-8 hover:border-primary transition-all">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="p-3 bg-surface-container-high rounded-lg text-primary">
+                        <span class="material-symbols-outlined" style="font-size: 32px;">precision_manufacturing</span>
                     </div>
-
-                    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-red-600 bg-red-50 p-2 rounded-lg text-lg">remove_circle</span>
-                            <h4 class="font-bold text-primary text-base">NF — Normalmente Fechado</h4>
-                        </div>
-                        <p class="text-sm text-on-surface-variant leading-relaxed">
-                            O circuito controlado permanece <strong>fechado</strong> (ligado) em repouso. Quando a bobina é energizada, a armadura se move e <em>abre</em> o contato, interrompendo a carga. Usado em circuitos de segurança e alarmes.
-                        </p>
-                        <span class="inline-block text-xs font-mono bg-red-50 text-red-800 border border-red-200 rounded px-2 py-1">Abre ao energizar</span>
-                    </div>
-
-                    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-blue-600 bg-blue-50 p-2 rounded-lg text-lg">swap_horiz</span>
-                            <h4 class="font-bold text-primary text-base">Reversível — NA/NF</h4>
-                        </div>
-                        <p class="text-sm text-on-surface-variant leading-relaxed">
-                            Possui um contato móvel que <strong>alterna</strong> entre dois contatos fixos. Em repouso, conecta ao NF; ao energizar, conecta ao NA. Permite inverter o controle de cargas ou criar lógicas de comutação mais complexas.
-                        </p>
-                        <span class="inline-block text-xs font-mono bg-blue-50 text-blue-800 border border-blue-200 rounded px-2 py-1">Alterna entre NA e NF</span>
-                    </div>
+                    <span class="font-label-md text-on-surface-variant opacity-40">T01</span>
                 </div>
-            </div>
-
-            <!-- Tipos de Relés -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-primary bg-surface-container p-2 rounded-lg">construction</span>
-                        <h3 class="text-xl font-bold text-primary">Relés Eletromecânicos (EMR)</h3>
-                    </div>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Utilizam uma bobina indutiva para gerar um campo magnético que movimenta mecanicamente uma armadura móvel com contatos metálicos. São ideais para isolamento galvânico físico robusto e suportam surtos de tensão espúrios em ambientes industriais severos, operando de acordo com as categorias de emprego IEC 60947.
-                    </p>
-                    <ul class="text-xs font-mono text-secondary space-y-1 bg-surface-container-low p-3 rounded">
-                        <li>• Velocidade: Baixa a média (milissegundos)</li>
-                        <li>• Desgaste: Mecânico por fricção e arco elétrico</li>
-                        <li>• Vantagem: Isolamento físico galvânico real</li>
-                    </ul>
-                </div>
-
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-primary bg-surface-container p-2 rounded-lg">science</span>
-                        <h3 class="text-xl font-bold text-primary">Relés Reed</h3>
-                    </div>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Inventados nos anos 60 (originalmente como <em>ferreed switch</em>), são compostos por finas lâminas condutoras seladas em um invólucro de vidro hermético com atmosfera inerte. São acionados por um campo magnético externo — seja de uma bobina ou de um ímã permanente.
-                    </p>
-                    <ul class="text-xs font-mono text-secondary space-y-1 bg-surface-container-low p-3 rounded">
-                        <li>• Velocidade: Muito alta (sub-milissegundos)</li>
-                        <li>• Desgaste: Mínimo (invólucro hermético)</li>
-                        <li>• Vantagem: Pequeno, sensível e confiável</li>
-                    </ul>
-                </div>
-
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-primary bg-surface-container p-2 rounded-lg">memory</span>
-                        <h3 class="text-xl font-bold text-primary">Relés de Estado Sólido (SSR)</h3>
-                    </div>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Desenvolvidos inteiramente sem partes móveis mecânicas. Funcionam por meio de um acoplador óptico: um LED emissor e um receptor fotossensível que acionam tiristores ou triacs para chaveamento eletrônico de altíssima velocidade, eliminando EMI e arco elétrico.
-                    </p>
-                    <ul class="text-xs font-mono text-secondary space-y-1 bg-surface-container-low p-3 rounded">
-                        <li>• Velocidade: Altíssima (microssegundos)</li>
-                        <li>• Desgaste: Virtualmente inexistente</li>
-                        <li>• Vantagem: Alta imunidade contra vibrações</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-outline-variant"/>
-
-        <!-- SEÇÃO: APLICAÇÕES PRÁTICAS -->
-        <section id="applications" class="space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-3xl font-bold tracking-tight text-primary">Aplicações e Prática</h2>
-                <p class="text-on-surface-variant text-sm">Do cotidiano à automação industrial — onde os relés estão presentes.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                    <span class="material-symbols-outlined text-primary text-3xl block">directions_car</span>
-                    <h4 class="font-bold text-primary">Automotivo</h4>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Relés controlam faróis, ventoinhas de arrefecimento, buzinas e partida do motor. Permitem que chaves de baixa corrente ativem cargas de alta potência sem riscos ao painel.
-                    </p>
-                </div>
-
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                    <span class="material-symbols-outlined text-primary text-3xl block">home</span>
-                    <h4 class="font-bold text-primary">Eletrodomésticos</h4>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Máquinas de lavar, fornos, geladeiras e ar-condicionado utilizam relés para acionar compressores e motores a partir de sinais lógicos de baixa tensão dos seus controladores.
-                    </p>
-                </div>
-
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                    <span class="material-symbols-outlined text-primary text-3xl block">factory</span>
-                    <h4 class="font-bold text-primary">Controle Industrial</h4>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Em CLP e painéis de automação, relés fazem interface entre circuitos lógicos de 24 V e cargas trifásicas de 380 V, protegendo os controladores por isolamento galvânico.
-                    </p>
-                </div>
-
-                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 space-y-3">
-                    <span class="material-symbols-outlined text-primary text-3xl block">settings_input_component</span>
-                    <h4 class="font-bold text-primary">Circuitos Driver</h4>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Transistores, optoacopladores e CIs específicos formam circuitos de excitação (<em>drivers</em>) para acionar relés a partir de saídas de microcontroladores, com supressão de transientes indutivos por diodo de roda livre.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Supressor de transiente -->
-            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start">
-                <span class="material-symbols-outlined text-primary text-4xl shrink-0">shield</span>
-                <div class="space-y-2">
-                    <h4 class="font-bold text-primary text-lg">Circuitos Supressores — Prolongando a Vida Útil</h4>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">
-                        Quando a bobina é desligada, o campo magnético em colapso gera um pico de tensão inversa (transiente indutivo) que pode danificar o driver e os contatos. A solução mais simples é um <strong>diodo de roda livre</strong> em paralelo com a bobina — ele absorve o pico, protegendo o circuito de controle e prolongando consideravelmente a durabilidade do relé. Em circuitos AC, varistores ou snubbers RC cumprem função similar.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-outline-variant"/>
-
-        <!-- SEÇÃO: CURIOSIDADE TÉCNICA -->
-        <section id="biquinary" class="space-y-6">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-3xl font-bold tracking-tight text-primary">Curiosidade Técnica</h2>
-                <p class="text-on-surface-variant text-sm">Detalhes fascinantes da história da computação eletromecânica.</p>
-            </div>
-
-            <div class="max-w-3xl mx-auto bg-primary text-white rounded-2xl p-8 space-y-4 shadow-md">
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-on-primary-container text-3xl">calculate</span>
-                    <h3 class="text-xl font-bold">Notação Bi-Quinária</h3>
-                </div>
-                <p class="text-on-primary-container text-sm leading-relaxed">
-                    Os primeiros computadores a relé utilizavam uma notação especial chamada <strong>bi-quinária</strong> para representar dígitos decimais através de combinações específicas de estados de relés — ligado ou desligado.
+                <h3 class="font-headline-md text-headline-md mb-4">Relés Eletromecânicos (EMR)</h3>
+                <p class="font-body-md text-on-surface-variant max-w-lg mb-8">
+                    Utilizam uma bobina indutiva para gerar um campo magnético que movimenta mecanicamente uma armadura móvel com contatos metálicos. São ideais para cargas de alta potência e oferecem um isolamento galvânico físico extremamente robusto.
                 </p>
-                <p class="text-on-primary-container text-sm leading-relaxed">
-                    Em vez de armazenar números em binário puro, cada dígito decimal (0 a 9) era codificado com <strong>dois grupos de relés</strong>: um grupo de 2 relés (codificando valores 0 ou 5) e outro grupo de 5 relés (codificando valores 0 a 4). Essa redundância garantia a integridade dos cálculos militares — se dois relés ligassem simultaneamente no mesmo grupo, o sistema detectava o erro automaticamente.
-                </p>
-                <div class="font-mono text-xs bg-primary-container rounded-lg p-4 text-white space-y-1">
-                    <div>Dígito 0 → <span class="text-on-primary-container">01 | 00001</span></div>
-                    <div>Dígito 5 → <span class="text-on-primary-container">10 | 00001</span></div>
-                    <div>Dígito 7 → <span class="text-on-primary-container">10 | 00100</span></div>
-                    <div class="text-on-primary-container pt-1 italic">Grupo Quinário | Grupo Binário</div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-outline-variant"/>
-
-
-            <div class="max-w-3xl mx-auto space-y-6" id="maintenance">
-                <div class="space-y-2">
-                    <h2 class="text-3xl font-bold tracking-tight text-primary text-center">Protocolo de Diagnóstico e Campo</h2>
-                    <p class="text-on-surface-variant text-sm text-center">Siga o roteiro passo a passo ordenado com segurança instrumental.</p>
-                </div>
-
-                <div class="flex gap-4 p-4 rounded-lg bg-error-container text-on-surface border border-outline-variant">
-                    <span class="material-symbols-outlined text-primary text-2xl">warning</span>
-                    <div class="text-sm">
-                        <strong>ALERTA DE SEGURANÇA ELÉTRICA:</strong> Certifique-se de que o painel de controle de testes esteja completamente desenergizado utilizando os procedimentos normativos de bloqueio e etiquetação (Lockout/Tagout) antes de tocar em conexões.
+                <div class="grid grid-cols-3 gap-4 border-t border-outline-variant pt-6">
+                    <div>
+                        <p class="font-label-md text-primary">Isolamento</p>
+                        <p class="font-code-sm text-secondary">Excelente (Físico)</p>
                     </div>
-                </div>
-
-                <div class="space-y-3">
-                    <div class="accordion-item border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
-                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 font-semibold text-sm text-primary hover:bg-surface-container transition-colors">
-                            <span>Passo 1: Mapeamento dos Terminais de Conexão</span>
-                            <span class="material-symbols-outlined icon-rot">expand_more</span>
-                        </button>
-                        <div class="accordion-content bg-white">
-                            <p class="p-4 text-xs text-on-surface-variant leading-relaxed font-mono">
-                                Identifique os pinos utilizando o diagrama impresso pelo fabricante no invólucro (A1 e A2 para a bobina; 11/15 para o Comum, 12/16 para NF e 14/18 para o contato NA).
-                            </p>
-                        </div>
+                    <div>
+                        <p class="font-label-md text-primary">Velocidade</p>
+                        <p class="font-code-sm text-secondary">Baixa (Milissegundos)</p>
                     </div>
-
-                    <div class="accordion-item border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
-                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 font-semibold text-sm text-primary hover:bg-surface-container transition-colors">
-                            <span>Passo 2: Verificação Óhmica com Multímetro</span>
-                            <span class="material-symbols-outlined icon-rot">expand_more</span>
-                        </button>
-                        <div class="accordion-content bg-white">
-                            <p class="p-4 text-xs text-on-surface-variant leading-relaxed font-mono">
-                                Meça a resistência da bobina em vazio. Valores muito baixos sugerem curto entre espiras; circuitos em escala aberta (OL) indicam rompimento do filamento de cobre. Valores normais variam de 50 a 200 ohms na maioria dos modelos elétricos industriais.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
-                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 font-semibold text-sm text-primary hover:bg-surface-container transition-colors">
-                            <span>Passo 3: Análise Qualitativa dos Contatos Elétricos</span>
-                            <span class="material-symbols-outlined icon-rot">expand_more</span>
-                        </button>
-                        <div class="accordion-content bg-white">
-                            <p class="p-4 text-xs text-on-surface-variant leading-relaxed font-mono">
-                                Com a bobina sem energia, meça a continuidade do canal NF. Energize a bobina com a tensão nominal e valide o fechamento estável do canal NA. Desgastes severos formam o efeito de "Contatos Soldados ou Colados" devido ao arco elétrico sob carga.
-                            </p>
-                        </div>
+                    <div>
+                        <p class="font-label-md text-primary">Vida Útil</p>
+                        <p class="font-code-sm text-secondary">Limitada por Desgaste</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <hr class="border-outline-variant"/>
-
-        <section id="quiz" class="space-y-8 bg-surface-container rounded-2xl p-6 md:p-8 border border-outline-variant">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-2xl font-bold tracking-tight text-primary flex items-center justify-center gap-2">
-                    <span class="material-symbols-outlined text-primary">psychology</span> Desafio Lumina AI
-                </h2>
-                <p class="text-xs text-on-surface-variant">Teste sua fixação técnica com perguntas estritamente sintonizadas com o conteúdo do portal.</p>
-            </div>
-
-            <div id="quiz-container" class="space-y-6 max-w-3xl mx-auto">
+            <div class="md:col-span-4 bg-primary-container text-on-primary-container p-8 flex flex-col justify-between hover:bg-on-primary-fixed-variant transition-all cursor-pointer" onclick="toggleChat()">
+                <div>
+                    <div class="p-3 bg-on-primary-fixed-variant inline-block rounded-lg mb-8">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md mb-4">Estado Sólido (SSR)</h3>
+                    <p class="font-body-md opacity-80">Desenvolvido sem partes móveis mecânicas. Utiliza tiristores, triacs ou optoacopladores para chaveamento eletrônico rápido com durabilidade virtualmente infinita sob vibrações.</p>
                 </div>
-
-            <div class="text-center pt-4">
-                <button id="btn-submit-quiz" onclick="validateQuiz()" class="bg-primary text-white font-semibold text-sm px-8 py-3 rounded shadow hover:bg-primary-container transition-all">
-                    Validar Respostas
+                <button class="mt-8 font-label-md flex items-center gap-2 hover:underline text-left text-white">
+                    PERGUNTAR AO ASSISTENTE IA
+                    <span class="material-symbols-outlined">north_east</span>
                 </button>
             </div>
 
-            <div id="quiz-result" class="max-w-3xl mx-auto hidden"></div>
-        </section>
-
-    </main>
-
-    <footer class="border-t border-outline-variant bg-surface-container-high mt-16 py-8">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-xs font-mono text-secondary">
-                © 2026 RelayTech Academy. Conteúdo referenciado com base nas diretrizes técnicas de Engenharia de Automação.
+            <div class="md:col-span-4 bg-white border border-outline-variant p-8 hover:shadow-sm transition-all">
+                <span class="material-symbols-outlined text-primary mb-6">schedule</span>
+                <h3 class="font-headline-md text-headline-md mb-2">Relés Temporizadores</h3>
+                <p class="font-body-md text-on-surface-variant">Dispositivos projetados para realizar automação lógica baseada em tempo, executando ações configuradas de atraso na energização (On-Delay) ou desenergização (Off-Delay).</p>
             </div>
-            <div class="flex gap-6 text-xs font-mono text-secondary">
-                <a href="#" class="hover:underline">Suporte Técnico</a>
-                <a href="#" class="hover:underline">Políticas de Privacidade</a>
+
+            <div class="md:col-span-8 bg-surface-container-high border border-outline-variant p-8 flex items-center gap-8">
+                <div class="flex-1">
+                    <span class="material-symbols-outlined text-primary mb-6">shield_with_heart</span>
+                    <h3 class="font-headline-md text-headline-md mb-2">Relés de Proteção Térmica</h3>
+                    <p class="font-body-md text-on-surface-variant">Sistemas críticos voltados para o monitoramento contínuo de sobrecarga térmica, assimetria ou falta de fase, e sub-tensão em motores e grandes painéis industriais elétricos.</p>
+                </div>
+                <div class="hidden lg:flex w-48 h-32 bg-background border border-outline-variant rounded items-center justify-center technical-grid">
+                    <span class="font-code-sm text-on-surface-variant font-bold">DIAGRAMA TÉCNICO 4.2</span>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-        <div id="side-nav" class="w-80 md:w-96 h-[480px] bg-white border border-outline-variant rounded-xl shadow-2xl flex flex-col mb-4 opacity-0 pointer-events-none translate-y-2 transition-all duration-300">
-            <div class="bg-primary p-4 rounded-t-xl flex items-center justify-between text-white">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined">smart_toy</span>
-                    <div>
-                        <div class="text-sm font-bold">Assistente Lumina AI</div>
-                        <div class="text-[10px] text-on-primary-container">Especialista em Circuitos e Relés</div>
+<section class="py-24 bg-surface-container-lowest" id="apps">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="flex items-center gap-4 mb-12">
+            <div class="h-8 w-1 bg-primary"></div>
+            <h2 class="font-headline-lg text-headline-lg">Campos de Aplicação Prática</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white border border-outline-variant hover:border-primary transition-colors flex flex-col group">
+                <div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center rounded-lg mb-6">
+                    <span class="material-symbols-outlined">home_mini</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-4">Automação Residencial e Predial</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Integração inteligente de módulos de relés compactos de estado sólido (SSR) e eletromecânicos para controle remoto de cargas domésticas.</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Sistemas de Iluminação Inteligente
+                    </li>
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Acionamento de Portões Automáticos
+                    </li>
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Controle de Climatização e HVAC
+                    </li>
+                </ul>
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80" alt="Automação Residencial e Iluminação Inteligente" class="w-full h-40 object-cover rounded border border-outline-variant group-hover:scale-105 transition-transform duration-300" />
+            </div>
+
+            <div class="p-8 bg-white border border-outline-variant hover:border-primary transition-colors flex flex-col group">
+                <div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center rounded-lg mb-6">
+                    <span class="material-symbols-outlined">precision_manufacturing</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-4">Indústria & Painéis de Comando</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Aplicações severas com relés industriais robustos acoplados a CLPs, contatores de potência e temporizadores para sequenciamento seguro de motores.</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Circuitos de Partida de Motores
+                    </li>
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Isolamento e Acoplamento de CLP
+                    </li>
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Painéis de Distribuição Principal
+                    </li>
+                </ul>
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" alt="Painel Elétrico de Comando Industrial" class="w-full h-40 object-cover rounded border border-outline-variant group-hover:scale-105 transition-transform duration-300" />
+            </div>
+
+            <div class="p-8 bg-white border border-outline-variant hover:border-primary transition-colors flex flex-col group">
+                <div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center rounded-lg mb-6">
+                    <span class="material-symbols-outlined">directions_car</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-4">Sistemas Elétricos Automotivos</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Uso de relés automotivos blindados de 12V ou 24V projetados para operar de forma estável sob altas temperaturas e severas vibrações mecânicas.</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Sistemas de Ignição e Motor de Partida
+                    </li>
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Faróis de Alta Potência e Auxiliares
+                    </li>
+                    <li class="flex items-center gap-2 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Gerenciamento de Bomba de Combustível
+                    </li>
+                </ul>
+                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80" alt="Bloco do Motor e Relés Automotivos" class="w-full h-40 object-cover rounded border border-outline-variant group-hover:scale-105 transition-transform duration-300" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-background" id="maintenance">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="bg-surface-container-low rounded-xl p-8 md:p-12 border border-outline-variant">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/3">
+                    <h2 class="font-headline-lg text-headline-lg mb-4">Guia Prático de Manutenção</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-8">Siga nossos protocolos de engenharia elétrica recomendados para o diagnóstico rápido de falhas e testes de integridade em componentes elétricos.</p>
+                    <div class="p-4 bg-error-container text-on-error-container rounded-lg border border-error/20">
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="material-symbols-outlined">warning</span>
+                            <span class="font-label-md text-label-md font-bold uppercase">Segurança Elétrica</span>
+                        </div>
+                        <p class="font-code-sm text-code-sm">Certifique-se sempre de desenergizar o painel e realizar o bloqueio e etiquetação (Lockout/Tagout) antes de qualquer intervenção.</p>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="material-symbols-outlined text-white hover:opacity-80 transition-opacity">close</button>
-            </div>
-            <div class="flex-1 bg-surface-container-low">
-                <iframe src="http://localhost:8501/?embed=true" class="w-full h-full border-none rounded-b-xl"></iframe>
+                <div class="md:w-2/3 space-y-4" id="maintenance-accordion">
+                    <div class="accordion-item border-b border-outline-variant active bg-white p-4 rounded">
+                        <button class="w-full flex justify-between items-center py-4 text-left focus:outline-none hover:text-primary transition-colors font-semibold" onclick="toggleAccordion(this)">
+                            <span class="font-headline-md text-headline-md">Como Testar Relés com Multímetro</span>
+                            <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="pt-4 pb-2 space-y-4">
+                                <div class="bg-surface-container-lowest p-4 rounded border border-outline-variant font-code-sm text-code-sm leading-relaxed">
+                                    <p class="font-bold mb-2">Protocolo Técnico de Diagnóstico:</p>
+                                    <ol class="list-decimal list-inside space-y-2">
+                                        <li>Configure o multímetro na escala de resistência elétrica (Ohms) e meça a continuidade da bobina (valores normais variam de 50 a 200 Ω na maioria dos modelos industriais).</li>
+                                        <li>Verifique a resistência do contato em repouso nos terminais Normalmente Fechado (NF), buscando valores próximos a zero.</li>
+                                        <li>Alimente a bobina externamente com a sua tensão nominal de trabalho e certifique-se de que houve a comutação audível para o terminal Normalmente Aberto (NA).</li>
+                                        <li>Monitore a resistência de isolamento entre os pinos da bobina e os contatos de potência para descartar curtos internos perigosos.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-outline-variant bg-white p-4 rounded">
+                        <button class="w-full flex justify-between items-center py-4 text-left focus:outline-none hover:text-primary transition-colors font-semibold" onclick="toggleAccordion(this)">
+                            <span class="font-headline-md text-headline-md">Principais Sinais de Desgaste Crítico</span>
+                            <span class="material-symbols-outlined chevron transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="pt-4 pb-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 border border-outline-variant rounded bg-surface-container-lowest">
+                                    <h4 class="font-label-md text-label-md font-bold mb-2 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-error">emergency</span> Contatos Soldados ou Colados
+                                    </h4>
+                                    <p class="font-body-md text-body-md text-on-surface-variant">Fenômeno causado por centelhamento e formação de arco elétrico excessivo na comutação sob carga. O contato físico funde e o relé permanece travado na posição fechada.</p>
+                                </div>
+                                <div class="p-4 border border-outline-variant rounded bg-surface-container-lowest">
+                                    <h4 class="font-label-md text-label-md font-bold mb-2 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-error">local_fire_department</span> Isolação da Bobina Rompida
+                                    </h4>
+                                    <p class="font-body-md text-body-md text-on-surface-variant">Ocorre devido a surtos elétricos ou superaquecimento contínuo. Apresenta um odor característico de verniz queimado e o multímetro indicará circuito aberto (resistência infinita).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <button onclick="toggleChat()" class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:bg-primary-container transition-all scale-100 active:scale-95">
-            <span id="chat-icon" class="material-symbols-outlined text-2xl">forum</span>
+<section class="py-24 bg-surface-container-lowest circuit-grid" id="quiz-section">
+    <div class="max-w-3xl mx-auto px-gutter">
+        <div class="bg-white p-8 md:p-12 rounded-xl border border-outline-variant shadow-lg">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="p-2 bg-primary-container text-white rounded-lg" style="background: linear-gradient(135deg, #3525cd 0%, #571ac0 100%);">
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                </div>
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Desafio de Engenharia Lumina AI</h2>
+                    <p class="text-sm text-on-surface-variant">5 perguntas técnicas geradas dinamicamente a cada carregamento.</p>
+                </div>
+            </div>
+            
+            <div id="quiz-container" class="space-y-8">
+                <div class="text-center py-8">
+                    <span class="material-symbols-outlined animate-spin text-4xl text-secondary">sync</span>
+                    <p class="mt-2 text-on-surface-variant font-code-sm">Lumina AI está estruturando novas questões...</p>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-outline-variant flex flex-col sm:flex-row justify-between items-center gap-4">
+                <button onclick="window.location.reload();" class="text-secondary hover:text-primary transition-colors font-label-md flex items-center gap-2 text-sm">
+                    <span class="material-symbols-outlined text-sm">refresh</span> Reiniciar e Mudar Perguntas
+                </button>
+                <button id="btn-submit-quiz" onclick="validateQuiz()" class="w-full sm:w-auto bg-primary text-on-primary px-8 py-3 font-label-md hover:opacity-90 transition-opacity">
+                    Enviar Respostas
+                </button>
+            </div>
+            
+            <div id="quiz-result" class="hidden mt-6 p-6 rounded-lg text-center font-body-md border"></div>
+        </div>
+    </div>
+</section>
+
+<footer class="w-full py-12 bg-surface-container border-t border-outline-variant">
+    <div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex flex-col gap-2">
+            <span class="font-headline-md text-headline-md font-bold">RelayMaster</span>
+            <p class="font-body-md text-secondary">© 2026 RelayMaster Engenharia e Automação. Todos os direitos reservados.</p>
+        </div>
+        <div class="flex gap-8">
+            <a class="font-label-md text-on-surface-variant hover:text-primary underline" href="#">Manuais e Datasheets</a>
+            <a class="font-label-md text-on-surface-variant hover:text-primary underline" href="#">Normas Técnicas de Segurança</a>
+        </div>
+    </div>
+</footer>
+
+<div class="fixed bottom-8 right-8 w-[400px] rounded-xl overflow-hidden bg-white border border-outline-variant shadow-2xl flex flex-col h-[600px] z-50 transform translate-y-2 opacity-0 pointer-events-none transition-all duration-300" id="side-nav">
+    <div class="p-4 bg-primary text-on-primary flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </div>
+            <div>
+                <h4 class="font-headline-md text-sm leading-tight font-bold text-white">Lumina AI</h4>
+                <p class="font-code-sm text-xs text-slate-300">Motor Gemma-2-2b-it</p>
+            </div>
+        </div>
+        <button class="hover:bg-white/10 p-1 rounded transition-colors" onclick="toggleChat()">
+            <span class="material-symbols-outlined text-white">close</span>
         </button>
     </div>
+    
+    <div class="flex-grow w-full h-full bg-white">
+        <iframe src="http://localhost:8501/?embed=true" class="w-full h-full border-0"></iframe>
+    </div>
+</div>
 
-    <script>
-        // ══ SIMULADOR DE RELÉ ══
-        let relayEnergized = false;
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-40 hover:scale-105 active:scale-95 transition-all" id="chat-fab" onclick="toggleChat()">
+    <span class="material-symbols-outlined text-white" id="chat-icon">forum</span>
+</button>
 
-        function toggleRelaySimulation() {
-            relayEnergized = !relayEnergized;
-            const btn        = document.getElementById('btn-trigger');
-            const led        = document.getElementById('sim-led');
-            const statusLbl  = document.getElementById('sim-status-label');
-            const nfLbl      = document.getElementById('nf-status');
-            const naLbl      = document.getElementById('na-status');
-            const armature   = document.getElementById('armature-group');
-            const magField   = document.getElementById('mag-field');
-            const coilWind   = document.getElementById('coil-windings');
-            const poleface   = document.getElementById('pole-face');
+<script>
+   // Gerenciador do Acordeão (Guia de Manutenção)
+    function toggleAccordion(element) {
+        const item = element.parentElement;
+        const isOpen = item.classList.contains('active');
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+        if (!isOpen) item.classList.add('active');
+    }
 
-            // Partículas de fluxo
-            const fluxCtrl1  = document.getElementById('flux-ctrl-1');
-            const fluxCtrl2  = document.getElementById('flux-ctrl-2');
-            const fluxNa     = document.getElementById('flux-na');
-            const animCtrl1  = document.getElementById('anim-ctrl-1');
-            const animCtrl2  = document.getElementById('anim-ctrl-2');
-            const animNa     = document.getElementById('anim-na');
+    // CONTROLO DEFINITIVO DO CHATBOT (Independente do ciclo de vida do iframe)
+    let isChatOpen = false;
 
-            // Lâmpadas
-            const lampNf     = document.getElementById('lamp-nf');
-            const lampNfLines = document.querySelectorAll('#load-nf line + line, #load-nf circle');
-            const lampNa     = document.getElementById('lamp-na');
+    function toggleChat() {
+        const sideNav = document.getElementById('side-nav');
+        const chatIcon = document.getElementById('chat-icon');
 
-            // Contatos NF/NA visuais
-            const contactNfFixed = document.getElementById('contact-nf-fixed');
-            const contactNa      = document.getElementById('contact-na');
-
-            if (relayEnergized) {
-                // ── Estado: ENERGIZADO ──
-                // Botão
-                btn.innerHTML = `<span class="material-symbols-outlined text-sm">power_settings_new</span> Desenergizar Bobina`;
-                btn.classList.replace('bg-primary', 'bg-secondary');
-
-                // LED e labels
-                led.style.backgroundColor = '#fbbf24';
-                led.style.boxShadow = '0 0 8px #fbbf24';
-                statusLbl.textContent = 'BOBINA ENERGIZADA';
-                statusLbl.style.color = '#b45309';
-                nfLbl.textContent = 'ABERTO';
-                nfLbl.className = 'font-bold text-red-600';
-                naLbl.textContent = 'FECHADO';
-                naLbl.className = 'font-bold text-green-600';
-
-                // Armadura atrai para o núcleo (gira ~12 graus)
-                armature.style.transform = 'rotate(12deg)';
-
-                // Campo magnético visível
-                magField.style.opacity = '1';
-
-                // Espiras da bobina — highlight ao energizar
-                coilWind.setAttribute('stroke', '#fbbf24');
-                poleface.setAttribute('fill', '#002046');
-
-                // Partículas animadas ativadas
-                fluxCtrl1.style.opacity = '0.85';
-                fluxCtrl2.style.opacity = '0.85';
-                fluxNa.style.opacity = '0.85';
-                animCtrl1.beginElement();
-                animCtrl2.beginElement();
-                animNa.beginElement();
-
-                // Lâmpada NF apaga
-                lampNf.setAttribute('fill', '#f1f5f9');
-                lampNf.setAttribute('stroke', '#74777f');
-                document.querySelectorAll('#load-nf line[stroke="#ca8a04"]').forEach(l => l.setAttribute('stroke', '#9ca3af'));
-                contactNfFixed.setAttribute('stroke', '#dc2626');
-                contactNfFixed.setAttribute('fill', '#fef2f2');
-
-                // Lâmpada NA acende
-                lampNa.setAttribute('fill', '#fef9c3');
-                lampNa.setAttribute('stroke', '#ca8a04');
-                document.querySelectorAll('#load-na line').forEach(l => l.setAttribute('stroke', '#ca8a04'));
-                contactNa.setAttribute('stroke', '#16a34a');
-                contactNa.setAttribute('fill', '#f0fdf4');
-
-            } else {
-                // ── Estado: DESLIGADO ──
-                btn.innerHTML = `<span class="material-symbols-outlined text-sm">power_settings_new</span> Energizar Bobina`;
-                btn.classList.replace('bg-secondary', 'bg-primary');
-
-                led.style.backgroundColor = '#5b5f61';
-                led.style.boxShadow = 'none';
-                statusLbl.textContent = 'BOBINA DESLIGADA';
-                statusLbl.style.color = '';
-                nfLbl.textContent = 'FECHADO';
-                nfLbl.className = 'font-bold text-green-600';
-                naLbl.textContent = 'ABERTO';
-                naLbl.className = 'font-bold text-secondary';
-
-                // Armadura volta à posição de repouso
-                armature.style.transform = 'rotate(0deg)';
-                magField.style.opacity = '0';
-                coilWind.setAttribute('stroke', '#87a0cd');
-                poleface.setAttribute('fill', '#74777f');
-
-                // Para partículas
-                fluxCtrl1.style.opacity = '0';
-                fluxCtrl2.style.opacity = '0';
-                fluxNa.style.opacity = '0';
-
-                // Lâmpada NF acende novamente
-                lampNf.setAttribute('fill', '#fef9c3');
-                lampNf.setAttribute('stroke', '#ca8a04');
-                document.querySelectorAll('#load-nf line').forEach(l => l.setAttribute('stroke', '#ca8a04'));
-                contactNfFixed.setAttribute('stroke', '#74777f');
-                contactNfFixed.setAttribute('fill', '#e0e3e5');
-
-                // Lâmpada NA apaga
-                lampNa.setAttribute('fill', '#f1f5f9');
-                lampNa.setAttribute('stroke', '#74777f');
-                document.querySelectorAll('#load-na line').forEach(l => l.setAttribute('stroke', '#9ca3af'));
-                contactNa.setAttribute('stroke', '#74777f');
-                contactNa.setAttribute('fill', '#e0e3e5');
-            }
+        if (isChatOpen) {
+            sideNav.style.setProperty('opacity', '0', 'important');
+            sideNav.style.setProperty('transform', 'translateY(8px)', 'important');
+            sideNav.style.setProperty('pointer-events', 'none', 'important');
+            chatIcon.textContent = 'forum';
+            isChatOpen = false;
+        } else {
+            sideNav.style.setProperty('opacity', '1', 'important');
+            sideNav.style.setProperty('transform', 'translateY(0)', 'important');
+            sideNav.style.setProperty('pointer-events', 'auto', 'important');
+            chatIcon.textContent = 'close';
+            isChatOpen = true;
         }
+    }
 
-        // Acordeão
-        function toggleAccordion(element) {
-            const item = element.parentElement;
-            const isOpen = item.classList.contains('active');
-            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-            if (!isOpen) item.classList.add('active');
-        }
-
-        // Janela do Chatbot Flutuante
-        let isChatOpen = false;
-        function toggleChat() {
-            const sideNav = document.getElementById('side-nav');
-            const chatIcon = document.getElementById('chat-icon');
-            if (isChatOpen) {
-                sideNav.style.opacity = '0';
-                sideNav.style.pointerEvents = 'none';
-                sideNav.style.transform = 'translateY(8px)';
-                chatIcon.textContent = 'forum';
-                isChatOpen = false;
-            } else {
-                sideNav.style.opacity = '1';
-                sideNav.style.pointerEvents = 'auto';
-                sideNav.style.transform = 'translateY(0)';
-                chatIcon.textContent = 'close';
-                isChatOpen = true;
+    // Otimização do Scroll da Navbar (Isolado por completo do estado do chatbot)
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('#nav-links a');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            if (window.pageYOffset >= (section.offsetTop - 120)) {
+                current = section.getAttribute('id');
             }
-        }
-
-        // --- BANCO DE QUESTÕES SINCRO COM O PORTAL ---
-        const luminaQuizBank = [
-            {
-                question: "Baseando-se no histórico apresentado sobre a evolução dos relés, qual foi a inovação fundamental introduzida por Joseph Henry em 1835?",
-                options: [
-                    "A criação do primeiro relé de estado sólido utilizando triacs e acopladores ópticos.",
-                    "A descoberta de que um sinal elétrico fraco de longa distância poderia magnetizar uma bobina para controlar um circuito local de alta potência.",
-                    "O desenvolvimento de portas lógicas binárias puramente digitais integradas em silício.",
-                    "A invenção da tecnologia de modulação por largura de pulso (PWM)."
-                ],
-                correct: 1,
-                rationale: "Como descrito na nossa linha do tempo histórica, Joseph Henry descobriu em 1835 que uma corrente fraca de longa distância podia magnetizar uma bobina para abrir ou fechar um circuito secundário de maior capacidade."
-            },
-            {
-                question: "Na computação pioneira da década de 1940, qual máquina icônica utilizou relés eletromagnéticos atuando como as primeiras portas lógicas binárias?",
-                options: [
-                    "O computador ENIAC baseado em válvulas de vácuo.",
-                    "A máquina analítica mecânica projetada inteiramente por Charles Babbage.",
-                    "O computador pioneiro Z3 desenvolvido pelo engenheiro Konrad Zuse.",
-                    "O supercomputador Cray-1 baseado em microprocessadores."
-                ],
-                correct: 2,
-                rationale: "De acordo com a seção histórica do nosso portal, antes do advento dos transistores, os relés operaram como portas lógicas binárias fundamentais em máquinas como o computador Z3 de Konrad Zuse."
-            },
-            {
-                question: "Consultando a classificação de modelos de relés do site, qual alternativa aponta uma característica exclusiva do Relé de Estado Sólido (SSR) frente ao Eletromecânico (EMR)?",
-                options: [
-                    "Oferecer um isolamento galvânico do tipo mecânico visível a olho nu.",
-                    "Velocidade de chaveamento lenta medida em segundos para poupar a rede.",
-                    "Possuir durabilidade elevada devido à completa ausência de partes móveis mecânicas.",
-                    "Eliminar por completo o aquecimento e a dissipação térmica do invólucro."
-                ],
-                correct: 2,
-                rationale: "Nossa seção de modelos técnicos destaca que os SSRs são desenvolvidos totalmente sem partes móveis, o que elimina o desgaste físico mecânico e permite suportar vibrações severas."
-            },
-            {
-                question: "Conforme detalhado no Guia Prático de Manutenção, qual a faixa típica de resistência esperada ao medir a continuidade de uma bobina industrial íntegra com o multímetro?",
-                options: [
-                    "Entre 50 Ω e 200 Ω na maioria dos modelos elétricos industriais comuns.",
-                    "Valores idênticos a zero absoluto (0.00 Ω) indicando curto integral.",
-                    "Leitura contínua em escala aberta indicando 'OL' (Open Line).",
-                    "Acima de 20 Megaohms (MΩ) para isolar a alta tensão."
-                ],
-                correct: 0,
-                rationale: "O segundo passo do nosso protocolo prático de diagnóstico instrui que os valores de resistência saudável para a bobina em vazio variam de 50 a 200 ohms."
-            },
-            {
-                question: "Se um painel industrial apresentar um relé defeituoso onde as lâminas condutoras derreteram e colaram na posição fechada, qual falha listada no guia prático ocorreu?",
-                options: [
-                    "Isolação da Bobina Rompida por queima de verniz isolante.",
-                    "Atraso térmico linear na desenergização por falha interna de clock.",
-                    "Contatos Soldados ou Colados devido a centelhamento e formação de arco elétrico sob carga.",
-                    "Curto-circuito lógico na entrada de controle do driver do CLP."
-                ],
-                correct: 2,
-                rationale: "Nosso guia de manutenção aponta que o fenômeno de 'Contatos Soldados ou Colados' ocorre quando o arco elétrico severo sob carga funde o metal dos pontos de contato elétrico."
-            },
-            {
-                question: "Qual cientista demonstrou em 1820 que uma corrente elétrica percorrendo um condutor gera um campo magnético ao redor dele?",
-                options: [
-                    "Michael Faraday, ao estudar a indução eletromagnética com bobinas.",
-                    "Hans Christian Oersted, em experimento com bússola e fio condutor.",
-                    "Edward Davy, ao patentar o primeiro relé telegráfico.",
-                    "Joseph Henry, ao estudar a transmissão de sinais a longas distâncias."
-                ],
-                correct: 1,
-                rationale: "A seção histórica do portal destaca que foi Oersted, em 1820, quem demonstrou experimentalmente que corrente elétrica cria campo magnético — princípio fundamental que tornou o relé possível."
-            },
-            {
-                question: "Em que ano Edward Davy registrou a primeira patente de um relé e qual era sua aplicação original?",
-                options: [
-                    "1831, para uso em transformadores de indução magnética.",
-                    "1820, para amplificar sinais de bússolas magnéticas navais.",
-                    "1838, para amplificar sinais em linhas telegráficas de longa distância.",
-                    "1941, para operar portas lógicas em computadores militares."
-                ],
-                correct: 2,
-                rationale: "Conforme descrito na linha do tempo histórica do portal, Edward Davy patenteou o relé em 1838, concebendo-o especificamente para retransmitir e amplificar sinais telegráficos sem perda de qualidade."
-            },
-            {
-                question: "Qual é a principal vantagem do contato NF (Normalmente Fechado) em circuitos de segurança?",
-                options: [
-                    "Economiza energia pois a bobina fica energizada continuamente.",
-                    "Garante que a carga permanece ativa mesmo em caso de falha ou perda de energia na bobina.",
-                    "Permite maior velocidade de chaveamento comparado ao contato NA.",
-                    "Elimina a necessidade de circuito supressor de transiente indutivo."
-                ],
-                correct: 1,
-                rationale: "A seção de Tipos de Contatos explica que o NF mantém o circuito fechado em repouso. Em aplicações de segurança, isso significa que uma falha na bobina (perda de energia) não interrompe funções críticas, como travas de segurança ou alarmes."
-            },
-            {
-                question: "Qual componente é usado como circuito supressor em relés de corrente contínua para proteger o driver contra transientes indutivos?",
-                options: [
-                    "Capacitor eletrolítico em série com a bobina para filtrar ruído.",
-                    "Resistor pull-up conectado ao pino de controle do transistor.",
-                    "Diodo de roda livre em paralelo com a bobina, absorvendo o pico reverso.",
-                    "Fusível de ação rápida em paralelo com os contatos de saída."
-                ],
-                correct: 2,
-                rationale: "A seção de Aplicações Práticas detalha que o diodo de roda livre, instalado em paralelo com a bobina, absorve o pico de tensão inversa gerado pelo campo magnético em colapso ao desligar a bobina, protegendo o circuito driver."
-            },
-            {
-                question: "Qual era a característica inovadora da notação bi-quinária usada nos primeiros computadores a relé?",
-                options: [
-                    "Representar todos os números em base 16 (hexadecimal) com 4 bits.",
-                    "Usar dois grupos de relés por dígito para codificar valores decimais com detecção automática de erros.",
-                    "Processar operações matemáticas em ponto flutuante usando apenas 3 relés por dígito.",
-                    "Substituir os transistores por válvulas termiônicas em circuitos de memória."
-                ],
-                correct: 1,
-                rationale: "A Curiosidade Técnica do portal descreve que a notação bi-quinária usava dois grupos de relés — um de 2 (quinário) e um de 5 (binário) — por dígito decimal, e a redundância permitia detecção automática de falhas nos cálculos militares."
+        });
+        navLinks.forEach(link => {
+            link.className = "nav-link text-secondary hover:text-primary transition-colors font-body-md";
+            if (link.getAttribute('href') === `#${current}`) {
+                link.className = "nav-link text-primary border-b-2 border-primary pb-1 font-body-md";
             }
-        ];
+        });
+    });
 
-        let selectedQuestions = [];
+    // --- BANCO DE QUESTÕES DA LUMINA AI (Sincronizado com o Conteúdo do Site) ---
+    const luminaQuizBank = [
+        {
+            question: "Baseando-se no histórico apresentado sobre a evolução dos relés, qual foi a inovação fundamental introduzida por Joseph Henry em 1835?",
+            options: [
+                "A criação do primeiro relé de estado sólido utilizando triacs e acopladores ópticos de alta velocidade.",
+                "A descoberta de que um sinal elétrico fraco de longa distância poderia magnetizar uma bobina para controlar um circuito local de alta potência.",
+                "O desenvolvimento de portas lógicas binárias puramente digitais integradas em placas de silício e germânio.",
+                "A invenção da tecnologia de modulação por largura de pulso (PWM) aplicada diretamente a contatores automotivos."
+            ],
+            correct: 1,
+            rationale: "Como descrito na nossa linha do tempo histórica, Joseph Henry descobriu em 1835 que uma corrente fraca de longa distância podia magnetizar uma bobina para abrir ou fechar um circuito secundário local de alta potência."
+        },
+        {
+            question: "Na computação pioneira da década de 1940, qual máquina icônica utilizou relés eletromagnéticos atuando como as primeiras portas lógicas binárias?",
+            options: [
+                "O computador ENIAC desenvolvido por John Mauchly.",
+                "A máquina analítica diferencial projetada inteiramente por Charles Babbage.",
+                "O computador pioneiro Z3 desenvolvido pelo engenheiro Konrad Zuse.",
+                "O supercomputador Cray-1 baseado em microprocessadores de silício."
+            ],
+            correct: 2,
+            rationale: "De acordo com a seção histórica do nosso portal, antes do advento dos transistores, os relés operaram como portas lógicas em máquinas pioneiras do mundo como o computador Z3 de Konrad Zuse."
+        },
+        {
+            question: "Consultando a tabela de 'Classificação Técnica de Dispositivos', qual das alternativas aponta uma vantagem exclusiva do Relé de Estado Sólido (SSR) em relação ao Eletromecânico (EMR)?",
+            options: [
+                "Oferecer um isolamento galvânico do tipo físico visível a olho nu.",
+                "Velocidade de chaveamento na ordem de milissegundos com desgaste mecânico acentuado.",
+                "Possuir durabilidade virtualmente infinita sob vibrações devido à ausência de partes móveis mecânicas.",
+                "Eliminar completamente a necessidade de dissipação de calor através de invólucros metálicos."
+            ],
+            correct: 3, // Corrigido o índice (0-based: 3º item é índice 2)
+            options: [
+                "Oferecer um isolamento galvânico do tipo físico visível a olho nu.",
+                "Velocidade de chaveamento lenta medida em segundos para poupar a rede.",
+                "Possuir durabilidade virtualmente infinita sob vibrações devido à ausência de partes móveis mecânicas.",
+                "Operar exclusivamente através de ligas metálicas bimetálicas de tungstênio."
+            ],
+            correct: 2,
+            rationale: "Nossa seção de modelos técnicos destaca que os SSRs são desenvolvidos sem partes móveis mecânicas, garantindo chaveamento rápido e uma durabilidade virtualmente infinita mesmo sob condições de vibração."
+        },
+        {
+            question: "Conforme detalhado no Guia Prático de Manutenção, qual a faixa típica de resistência esperada ao medir a continuidade de uma bobina industrial saudável com o multímetro?",
+            options: [
+                "Entre 50 Ω e 200 Ω na maioria dos modelos elétricos industriais.",
+                "Valores idênticos a zero absoluto (0.00 Ω) para evitar o efeito Joule.",
+                "Leitura contínua em escala aberta indicando 'OL' (Open Line).",
+                "Acima de 20 Megaohms (MΩ) para garantir o isolamento físico galvânico."
+            ],
+            correct: 0,
+            rationale: "O primeiro passo do nosso protocolo técnico de diagnóstico instrui que os valores normais de resistência de uma bobina íntegra variam de 50 a 200 Ω na maioria dos modelos industriais."
+        },
+        {
+            question: "Se um painel industrial apresentar um relé com defeito onde os contatos físicos se fundiram e fixaram na posição fechada, qual sinal crítico de desgaste listado no guia de manutenção acabou de ocorrer?",
+            options: [
+                "Isolação da Bobina Rompida por queima de verniz isolante.",
+                "Curto-circuito interno na entrada lógica do acoplamento do CLP.",
+                "Atraso térmico linear na desenergização (falha de Off-Delay).",
+                "Contatos Soldados ou Colados devido a centelhamento excessivo sob carga."
+            ],
+            correct: 3,
+            rationale: "Nosso guia de manutenção aponta que o fenômeno de 'Contatos Soldados ou Colados' ocorre quando o centelhamento e a formação de arco elétrico sob carga fundem o metal, travando o relé na posição fechada."
+        },
+        {
+            question: "Na seção de Aplicações Práticas, quais sistemas são comumente controlados por módulos de relés compactos no segmento de Automação Residencial e Predial?",
+            options: [
+                "Motores trifásicos industriais pesados e transformadores de potência de subestações.",
+                "Iluminação inteligente, acionamento de portões automáticos e controle de climatização (HVAC).",
+                "Motores de partida automotivos de 12V e bombas de combustível blindadas.",
+                "Circuitos lógicos binários de computadores de alta performance baseados em silício."
+            ],
+            correct: 1,
+            rationale: "A seção de aplicações lista explicitamente a Iluminação Inteligente, Portões Automáticos e Sistemas de Climatização/HVAC como as principais frentes integradas pelos módulos de relé na automação predial."
+        },
+        {
+            question: "Antes de efetuar qualquer intervenção física ou teste em um painel elétrico de comando industrial, qual protocolo obrigatório de segurança elétrica é exigido na seção de manutenção?",
+            options: [
+                "Limpar os contatos metálicos com jatos de água destilada fria.",
+                "Desenergizar o painel e realizar os procedimentos de bloqueio e etiquetação (Lockout/Tagout).",
+                "Garantir que a bobina opere continuamente com uma tensão 15% acima da nominal.",
+                "Substituir todos os relés eletromecânicos por modelos do tipo temporizadores digitais."
+            ],
+            correct: 1,
+            rationale: "O alerta de segurança elétrica realçado no nosso guia de manutenção estipula que o operador deve sempre desenergizar o painel e realizar o bloqueio e etiquetação (Lockout/Tagout) antes de intervir."
+        }
+    ];
 
-        function generateLuminaQuiz() {
-            const quizContainer = document.getElementById('quiz-container');
-            const shuffled = [...luminaQuizBank].sort(() => 0.5 - Math.random());
-            selectedQuestions = shuffled.slice(0, 5);
+    let selectedQuestions = [];
 
-            let htmlContent = "";
-            selectedQuestions.forEach((q, index) => {
-                htmlContent += `
-                    <div class="p-5 bg-white border border-outline-variant rounded-lg space-y-3 question-card" data-correct="${q.correct}">
-                        <div class="flex items-start gap-2">
-                            <span class="bg-primary-container text-on-primary-container text-xs px-2 py-0.5 rounded font-bold mt-0.5">Q${index + 1}</span>
-                            <h3 class="font-semibold text-sm text-primary">${q.question}</h3>
-                        </div>
-                        <div class="grid grid-cols-1 gap-2 pl-7">
-                `;
-                q.options.forEach((opt, optIndex) => {
-                    htmlContent += `
-                        <label class="flex items-start gap-3 p-2.5 border border-outline-variant rounded hover:border-primary cursor-pointer text-xs transition-colors">
-                            <input type="radio" name="question_${index}" value="${optIndex}" class="text-primary focus:ring-primary border-outline-variant mt-0.5">
-                            <span class="text-on-surface-variant">${opt}</span>
-                        </label>
-                    `;
-                });
-                htmlContent += `
-                        </div>
-                        <p class="rationale-text hidden text-xs p-3 pl-4 border-l-2 rounded bg-surface-container-low"></p>
+    // Função para embaralhar e selecionar 5 perguntas da Lumina AI
+    function generateLuminaQuiz() {
+        const quizContainer = document.getElementById('quiz-container');
+        const quizResult = document.getElementById('quiz-result');
+        
+        quizResult.classList.add('hidden');
+        quizResult.innerHTML = "";
+        
+        // Clona e embaralha o array
+        const shuffled = [...luminaQuizBank].sort(() => 0.5 - Math.random());
+        selectedQuestions = shuffled.slice(0, 5); // Pega as 5 primeiras randomizadas
+
+        let htmlContent = "";
+        
+        selectedQuestions.forEach((q, index) => {
+            htmlContent += `
+                <div class="p-6 bg-surface-container-low border border-outline-variant rounded-lg space-y-4 question-card" data-correct="${q.correct}">
+                    <div class="flex items-start gap-3">
+                        <span class="font-label-md bg-primary-container text-on-primary-container px-2.5 py-0.5 rounded text-xs font-bold mt-1">
+                            Q${index + 1}
+                        </span>
+                        <h3 class="font-body-md font-semibold text-primary">${q.question}</h3>
                     </div>
+                    
+                    <div class="grid grid-cols-1 gap-3 pl-8">
+            `;
+            
+            q.options.forEach((opt, optIndex) => {
+                htmlContent += `
+                    <label class="flex items-start gap-3 p-3 bg-white border border-outline-variant rounded-lg cursor-pointer hover:border-primary hover:bg-surface-bright transition-colors text-sm">
+                        <input type="radio" name="question_${index}" value="${optIndex}" class="mt-0.5 text-primary focus:ring-primary border-outline-variant">
+                        <span class="text-on-surface-variant">${opt}</span>
+                    </label>
                 `;
             });
-            quizContainer.innerHTML = htmlContent;
+            
+            htmlContent += `
+                    </div>
+                    <p class="rationale-text hidden text-xs font-code-sm border-l-2 p-2 pl-4 mt-2 rounded bg-white"></p>
+                </div>
+            `;
+        });
+        
+        quizContainer.innerHTML = htmlContent;
+        document.getElementById('btn-submit-quiz').disabled = false;
+    }
+
+    // Validação de Respostas do Quiz
+    function validateQuiz() {
+        const cards = document.querySelectorAll('.question-card');
+        let score = 0;
+        let total = selectedQuestions.length;
+        let allAnswered = true;
+
+        // Verifica se todas foram respondidas
+        selectedQuestions.forEach((_, index) => {
+            const checked = document.querySelector(`input[name="question_${index}"]:checked`);
+            if (!checked) allAnswered = false;
+        });
+
+        if (!allAnswered) {
+            alert("Por favor, selecione uma resposta para cada uma das 5 perguntas antes de enviar!");
+            return;
         }
 
-        function validateQuiz() {
-            const cards = document.querySelectorAll('.question-card');
-            let score = 0;
-            let allAnswered = true;
-
-            selectedQuestions.forEach((_, index) => {
-                if (!document.querySelector(`input[name="question_${index}"]:checked`)) allAnswered = false;
+        cards.forEach((card, index) => {
+            const correctIndex = parseInt(card.getAttribute('data-correct'));
+            const checkedRadio = document.querySelector(`input[name="question_${index}"]:checked`);
+            const selectedValue = parseInt(checkedRadio.value);
+            const rationaleBox = card.querySelector('.rationale-text');
+            
+            // Estilização da caixa de Rationale (Explicação Técnica do Lumina)
+            rationaleBox.classList.remove('hidden');
+            rationaleBox.innerHTML = `<b>Explicação do Lumina AI:</b> ${selectedQuestions[index].rationale}`;
+            
+            // Reseta bordas dos inputs dentro do bloco
+            const labels = card.querySelectorAll('label');
+            labels.forEach(l => {
+                l.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
             });
 
-            if (!allAnswered) {
-                alert("Por favor, responda todas as perguntas antes de enviar o questionário!");
-                return;
-            }
-
-            cards.forEach((card, index) => {
-                const correctIndex = parseInt(card.getAttribute('data-correct'));
-                const checkedRadio = document.querySelector(`input[name="question_${index}"]:checked`);
-                const selectedValue = parseInt(checkedRadio.value);
-                const rationaleBox = card.querySelector('.rationale-text');
-                
-                rationaleBox.classList.remove('hidden');
-                rationaleBox.innerHTML = `<strong>Explicação:</strong> ${selectedQuestions[index].rationale}`;
-
-                const labels = card.querySelectorAll('label');
-                if (selectedValue === correctIndex) {
-                    score++;
-                    labels[correctIndex].classList.add('border-green-500', 'bg-green-50');
-                    rationaleBox.classList.add('border-green-500', 'text-green-800');
-                } else {
-                    labels[selectedValue].classList.add('border-red-500', 'bg-red-50');
-                    labels[correctIndex].classList.add('border-green-500', 'bg-green-50');
-                    rationaleBox.classList.add('border-red-500', 'text-red-800');
-                }
-            });
-
-            const resultPanel = document.getElementById('quiz-result');
-            resultPanel.classList.remove('hidden');
-            document.getElementById('btn-submit-quiz').disabled = true;
-
-            if (score === 5) {
-                resultPanel.className = "mt-6 p-4 rounded border border-green-500 bg-green-50 text-green-900 text-center text-sm font-medium";
-                resultPanel.innerHTML = `🎉 Excelente aproveitamento! Você gabaritou o teste técnico com ${score}/5 acertos.`;
-            } else if (score >= 3) {
-                resultPanel.className = "mt-6 p-4 rounded border border-blue-500 bg-blue-50 text-blue-900 text-center text-sm font-medium";
-                resultPanel.innerHTML = `👍 Bom resultado! Você acertou ${score}/5 questões. Revise os pontos destacados acima.`;
+            if (selectedValue === correctIndex) {
+                score++;
+                labels[correctIndex].classList.add('border-green-500', 'bg-green-50');
+                rationaleBox.classList.add('border-green-500', 'text-green-800');
             } else {
-                resultPanel.className = "mt-6 p-4 rounded border border-red-400 bg-error-container text-on-surface text-center text-sm font-medium";
-                resultPanel.innerHTML = `⚠️ Recomendamos revisar o material do portal. Você obteve ${score}/5 acertos.`;
+                labels[selectedValue].classList.add('border-red-500', 'bg-red-50');
+                labels[correctIndex].classList.add('border-green-500', 'bg-green-50');
+                rationaleBox.classList.add('border-red-500', 'text-red-800');
             }
-            resultPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        });
 
-        document.addEventListener("DOMContentLoaded", generateLuminaQuiz);
-    </script>
+        // Mostrar Painel Geral de Resultados
+        const resultPanel = document.getElementById('quiz-result');
+        resultPanel.classList.remove('hidden');
+        document.getElementById('btn-submit-quiz').disabled = true;
+
+        if (score === total) {
+            resultPanel.className = "mt-6 p-6 rounded-lg text-center font-body-md border border-green-500 bg-green-50 text-green-900";
+            resultPanel.innerHTML = `🎉 <b>Desempenho Excelente!</b> Você acertou ${score} de ${total} perguntas. Seu domínio da literatura clássica de relés está impecável!`;
+        } else if (score >= 3) {
+            resultPanel.className = "mt-6 p-6 rounded-lg text-center font-body-md border border-blue-500 bg-blue-50 text-blue-900";
+            resultPanel.innerHTML = `👍 <b>Bom Trabalho!</b> Você acertou ${score} de ${total} perguntas. Revise as explicações técnicas acima para atingir a nota máxima na próxima.`;
+        } else {
+            resultPanel.className = "mt-6 p-6 rounded-lg text-center font-body-md border border-error bg-error-container text-on-error-container";
+            resultPanel.innerHTML = `⚠️ <b>Análise Recomendada.</b> Você acertou ${score} de ${total} perguntas. Leia com atenção as justificativas geradas pelo Lumina AI para consolidar a teoria.`;
+        }
+        
+        // Scroll suave até o resultado do teste
+        resultPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Dispara a montagem do Quiz Lumina assim que a árvore DOM estiver totalmente pronta
+    document.addEventListener("DOMContentLoaded", generateLuminaQuiz);
+</script>
 </body>
 </html>
